@@ -1,5 +1,4 @@
 #include <stdio.h>
- #include <bits/libc-header-start.h>
 
 /**
  * main - Entry point
@@ -8,11 +7,11 @@
  */
 int main(void)
 {
-	printf("Size of a char: %d bite(s)\n", sizeof(char));
-	printf("Size of an int: %d bite(s)\n", sizeof(int));
-	printf("Size of a long: %d bite(s)\n", sizeof(long));
-	printf("Size of a long int: %d bite(s)\n", sizeof(long int));
-	printf("Size of a long long int: %d bite(s)\n", sizeof(long long int));
-	printf("Size of a float: %d bite(s)\n", sizeof(float));
+	printf("Size of a char: %ld bite(s)\n", sizeof(char));
+	printf("Size of an int: %ld bite(s)\n", sizeof(int));
+	printf("Size of a long: %ld bite(s)\n", sizeof(long));
+	printf("Size of a long int: %ld bite(s)\n", sizeof(long int));
+	printf("Size of a long long int: %ld bite(s)\n", sizeof(long long int));
+	printf("Size of a float: %ld bite(s)\n", sizeof(float));
 	return (0);
 }
