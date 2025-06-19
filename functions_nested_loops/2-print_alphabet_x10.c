@@ -7,7 +7,7 @@
 void print_alphabet_x10(void)
 {
 	int time = 1;
-	char alpha = 'a';
+	char alpha;
 
 	while (time <= 10)
 	{
