@@ -1,5 +1,9 @@
 #include "main.h"
 
+/**
+  * print_alphabet - writes the alphabet
+  *
+  */
 void print_alphabet(void)
 {
 	char alpha = 'a';
@@ -10,5 +14,4 @@ void print_alphabet(void)
 		alpha++;
 	}
 	_putchar('\n');
-	return;
 }
