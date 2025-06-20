@@ -27,7 +27,7 @@ void jack_bauer(void)
 					_putchar('\n');
 				}
 			}
-			if (petite_heure == 3 && grande_minute > 5 && petite_minute > 9)
+			if (grande_heure == 2 && petite_heure == 3 && grande_minute > 5 && petite_minute > 9)
 				break;
 		}
 	}
