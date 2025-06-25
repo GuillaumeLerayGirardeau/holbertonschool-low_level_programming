@@ -21,12 +21,11 @@ void rev_string(char *s)
 	number_letter -= 1;
 	milieu = number_letter / 2;
 
-	while (debut_letter < milieu)
+	for (; debut_letter < milieu ; debut_letter++)
 	{
 		swap = s[debut_letter];
 		s[debut_letter] = s[number_letter];
 		s[number_letter] = swap;
-		debut_letter++;
 		number_letter--;
 	}
 
