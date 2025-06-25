@@ -21,7 +21,7 @@ void rev_string(char *s)
 	number_letter -= 1;
 	milieu = number_letter / 2;
 
-	for (; debut_letter < milieu ; number_letter--)
+	for (; number_letter > milieu ; number_letter--)
 	{
 		swap = s[debut_letter];
 		s[debut_letter] = s[number_letter];
