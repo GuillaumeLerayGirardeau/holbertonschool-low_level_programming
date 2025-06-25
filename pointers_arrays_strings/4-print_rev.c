@@ -14,6 +14,7 @@ void print_rev(char *s)
 	{
 		number++;
 	}
+	number -= 1;
 	while (number >= 0)
 	{
 		number--;
