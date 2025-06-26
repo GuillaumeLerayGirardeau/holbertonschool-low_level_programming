@@ -16,6 +16,11 @@ void puts_half(char *str)
 		full_letter++;
 	}
 
+	if (full_letter % 2 != 0)
+	{
+		full_letter = full_letter + 1;
+	}
+
 	half = full_letter / 2;
 
 	while (str[half] != '\0')
