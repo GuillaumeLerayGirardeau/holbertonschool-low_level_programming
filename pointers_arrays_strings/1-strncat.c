@@ -14,8 +14,6 @@ char *_strncat(char *dest, char *src, int n)
 	int count = 0;
 	int all_letters = 0;
 
-	n -= 1;
-
 	while (dest[count] != '\0')
 	{
 		count++;
@@ -23,11 +21,11 @@ char *_strncat(char *dest, char *src, int n)
 
 	all_letters = count;
 
-	for (count = 0; count <= n; count++)
+	for (count = 0; count < n && src[count] != '\0'; count++)
 	{
 		dest[all_letters] = src[count];
 		all_letters++;
 	}
-	dest[all_letters] = '\0';
+
 	return (dest);
 }
