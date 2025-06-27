@@ -1,5 +1,13 @@
 #include "main.h"
 
+/**
+  * _strcat - concatenates two strings
+  *
+  * @dest : the original string
+  * @src : the string to add
+  *
+  * Return: both string merged
+  */
 char *_strcat(char *dest, char *src)
 {
 	int count = 0;
