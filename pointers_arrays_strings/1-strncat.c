@@ -28,5 +28,6 @@ char *_strncat(char *dest, char *src, int n)
 		dest[all_letters] = src[count];
 		all_letters++;
 	}
+	dest[all_letters] = '\0';
 	return (dest);
 }
