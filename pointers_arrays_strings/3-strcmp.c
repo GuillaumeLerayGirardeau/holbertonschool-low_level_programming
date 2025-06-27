@@ -11,29 +11,18 @@
 
 int _strcmp(char *s1, char *s2)
 {
-	int count1 = 0;
-	int count2 = 0;
+	int count = 0;
+	int total = 0;
 
-	while (s1[count1] != '\0')
+	while (s1[count] || s2[count])
 	{
-		count1++;
+		if (s1[count] != s2[count])
+		{
+			total = s1[count] - s2[count];
+			break;
+		}
+		count++;
 	}
 
-	while (s2[count2] != '\0')
-	{
-		count2++;
-	}
-
-	if (count1 > count2)
-	{
-		return (15);
-	}
-	else if (count1 < count2)
-	{
-		return (-15);
-	}
-	else
-	{
-		return (0);
-	}
+	return (total);
 }
