@@ -14,7 +14,7 @@ char *_memset(char *s, char b, unsigned int n)
 {
 	unsigned int time = 0;
 
-	while (time < n)
+	while (time < n || n == 0)
 	{
 		s[time] = b;
 		time++;
