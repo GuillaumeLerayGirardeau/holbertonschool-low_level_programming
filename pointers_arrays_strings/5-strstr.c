@@ -35,7 +35,7 @@ char *_strstr(char *haystack, char *needle)
 			a++;
 		}
 
-		if (a == lenght_need && lenght_need != 0)
+		if (a == lenght_need && lenght_need != 0 && needle[0] != '\0')
 		{
 			p = (haystack + time_hay) - time_need;
 			break;
