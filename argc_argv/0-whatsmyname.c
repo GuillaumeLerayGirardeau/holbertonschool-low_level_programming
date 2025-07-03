@@ -1,10 +1,8 @@
 #include "main.h"
 #include <stdio.h>
 
-int main(int i, char *argv[])
+int main(__attribute__((unused)) int argc, char *argv[])
 {
-	i = 0;
-
-	printf("%s\n", argv[i]);
+	printf("%s\n", argv[0]);
 	return (0);
 }
