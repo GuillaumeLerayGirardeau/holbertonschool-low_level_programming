@@ -18,7 +18,7 @@ char *_strstr(char *haystack, char *needle)
 
 	if (needle[time_n] == '\0')
 	{
-		return (p);
+		return (haystack);
 	}
 
 	for (time_h = 0; haystack[time_h] != '\0'; time_h++)
