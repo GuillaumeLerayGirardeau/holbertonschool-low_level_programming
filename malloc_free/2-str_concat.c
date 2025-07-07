@@ -26,19 +26,26 @@ char *str_concat(char *s1, char *s2)
 
 		combo = malloc(sizeof(char) * (size1 + size2));
 
-		for (size1 = 0; s1[size1] != '\0'; size1++)
+		if (combo != NULL)
 		{
-			combo[size1] = s1[size1];
+			for (size1 = 0; s1[size1] != '\0'; size1++)
+			{
+				combo[size1] = s1[size1];
+			}
+			for (size2 = 0; s2[size2] != '\0'; size2++)
+			{
+				combo[size1] = s2[size2];
+				size1++;
+			}
+
+			combo[size1] = '\0';
+
+			return (combo);
 		}
-		for (size2 = 0; s2[size2] != '\0'; size2++)
+		else
 		{
-			combo[size1] = s2[size2];
-			size1++;
+			return (NULL);
 		}
-
-		combo[size1] = '\0';
-
-		return (combo);
 	}
 	else
 	{
