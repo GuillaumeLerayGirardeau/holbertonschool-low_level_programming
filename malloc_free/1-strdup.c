@@ -34,14 +34,9 @@ char *_strdup(char *str)
 				newstr[size] = str[size];
 			}
 
-			if (newstr[0] != '\0')
-			{
-				return (newstr);
-			}
-			else
-			{
-				return (NULL);
-			}
+			newstr[size] = '\0';
+
+			return (newstr);
 		}
 	}
 	else
