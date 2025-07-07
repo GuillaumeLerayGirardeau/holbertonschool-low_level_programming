@@ -22,7 +22,11 @@ char *_strdup(char *str)
 		}
 
 		newstr = malloc(sizeof(char) * size);
-		newstr = str;
+
+		for (size = 0; str[size] != '\0'; size++)
+		{
+			newstr[size] = str[size];
+		}
 
 		return (newstr);
 	}
