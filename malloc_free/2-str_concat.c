@@ -14,24 +14,17 @@
 char *str_concat(char *s1, char *s2)
 {
 	char *combo;
-	int size1 = 0;
-	int size2 = 0;
+	int size1;
+	int size2;
 
-	if (s1 != NULL)
+	if (s1 != NULL || s2 != NULL)
 	{
 		for (size1 = 0; s1[size1] != '\0'; size1++)
 		{}
-	}
-
-	if (s2 != NULL)
-	{
 		for (size2 = 0; s2[size2] != '\0'; size2++)
 		{}
-	}
 
-	if (size1 > 0 || size2 > 0)
-	{
-		combo = malloc(sizeof(char) * (size1 + size2) + 1);
+		combo = malloc(sizeof(char) * (size1 + size2));
 
 		if (combo != NULL)
 		{
