@@ -23,12 +23,19 @@ char *_strdup(char *str)
 
 		newstr = malloc(sizeof(char) * size);
 
-		for (size = 0; str[size] != '\0'; size++)
+		if (newstr == NULL)
 		{
-			newstr[size] = str[size];
+			return (NULL);
 		}
+		else
+		{
+			for (size = 0; str[size] != '\0'; size++)
+			{
+				newstr[size] = str[size];
+			}
 
-		return (newstr);
+			return (newstr);
+		}
 	}
 	else
 	{
