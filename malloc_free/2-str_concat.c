@@ -36,6 +36,8 @@ char *str_concat(char *s1, char *s2)
 			size1++;
 		}
 
+		combo[size1] = '\0';
+
 		return (combo);
 	}
 	else
