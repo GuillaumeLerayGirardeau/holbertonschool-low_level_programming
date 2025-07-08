@@ -16,6 +16,8 @@ char *str_concat(char *s1, char *s2)
 	char *combo;
 	int size1;
 	int size2;
+	int i;
+	int j;
 
 	if (s1 == NULL || s2 == NULL)
 	{
@@ -34,17 +36,16 @@ char *str_concat(char *s1, char *s2)
 		return (NULL);
 	}
 
-	for (size1 = 0; s1[size1] != '\0'; size1++)
+	for (i = 0; s1[i] != '\0'; i++)
 	{
-		combo[size1] = s1[size1];
+		combo[i] = s1[i];
 	}
-	for (size2 = 0; s2[size2] != '\0'; size2++)
+	for (j = 0; s2[j] != '\0'; j++)
 	{
-		combo[size1] = s2[size2];
-		size1++;
+		combo[i + j] = s2[j];
 	}
 
-	combo[size1] = '\0';
+	combo[i + j] = '\0';
 
 	return (combo);
 }
