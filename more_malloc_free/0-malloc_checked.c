@@ -12,14 +12,14 @@
 
 void *malloc_checked(unsigned int b)
 {
-	int *a = 0;
+	void *a = 0;
 
-	if (b == 0)
+	if (b <= 0)
 	{
 		return (NULL);
 	}
 
-	a = malloc(sizeof(unsigned int) * b);
+	a = malloc(b);
 
 	if (a == NULL)
 	{
