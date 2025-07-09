@@ -28,9 +28,9 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 		return (NULL);
 	}
 
-	for (i = 0; i < size; i++)
+	for (i = 0; i < nmemb; i++)
 	{
-		array[i] = 0;
+		((char *)array)[i] = 0;
 	}
 
 	return (array);
