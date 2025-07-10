@@ -42,7 +42,7 @@ char *copystring(char *dest, char *origin)
 	int i = 0;
 
 	if (dest == NULL || origin == NULL)
-		return (0);
+		return (NULL);
 
 	while (origin[i] != '\0')
 	{
@@ -78,7 +78,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (owner == NULL)
 		owner = "";
 	if (age <= 0)
-		age = 000;
+		age = 0;
 
 	/* Malloc */
 	newdog = malloc(sizeof(dog_t));
@@ -86,14 +86,14 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (newdog == NULL)
 		return (NULL);
 
-	newdog->name = malloc(sizeof(char) * length(name));
+	newdog->name = malloc(sizeof(char) * length(name) + 1);
 	if (newdog->name == NULL)
 	{
 		free(newdog);
 		return (NULL);
 	}
 
-	newdog->owner = malloc(sizeof(char) * length(owner));
+	newdog->owner = malloc(sizeof(char) * length(owner) + 1);
 	if (newdog->owner == NULL)
 	{
 		free(newdog->name);
