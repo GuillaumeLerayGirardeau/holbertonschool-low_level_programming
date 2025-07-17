@@ -8,9 +8,7 @@
 
 void print_all(const char * const format, ...)
 {
-	int sep = 0, count = 0, number = 0;
-	char letter;
-	float chiffre;
+	int sep = 0, count = 0;
 	char *str;
 	va_list print;
 
@@ -21,15 +19,15 @@ void print_all(const char * const format, ...)
 		switch (format[count])
 		{
 			case 'c':
-				printf("%c", letter = va_arg(print, int));
+				printf("%c", va_arg(print, int));
 				sep = 1;
 				break;
 			case 'i':
-				printf("%d", number = va_arg(print, int));
+				printf("%d", va_arg(print, int));
 				sep = 1;
 				break;
 			case 'f':
-				printf("%f", chiffre = va_arg(print, double));
+				printf("%f", va_arg(print, double));
 				sep = 1;
 				break;
 			case 's':
