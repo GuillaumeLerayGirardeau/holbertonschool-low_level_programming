@@ -14,7 +14,7 @@ void print_all(const char * const format, ...)
 	va_list print;
 
 	va_start(print, format);
-	while (format[count] != '\0' && format != NULL)
+	while (format != NULL && format[count] != '\0')
 	{
 		if (sep == 1 && (format[count] == 'c' || format[count] == 'i'
 			|| format[count] == 'f' || format[count] == 's'))
