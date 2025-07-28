@@ -28,6 +28,11 @@ unsigned int check_null(const list_t *h)
  */
 size_t print_list(const list_t *h)
 {
+	if (h == NULL)
+	{
+		return (0);
+	}
+	
 	if (h->str == NULL)
 	{
 		printf("[0] (nil)\n");
@@ -35,9 +40,7 @@ size_t print_list(const list_t *h)
 	}
 	else
 	{
-		printf("[%d] %s\n", h->len, h->str);
+		printf("[%i] %s\n", h->len, h->str);
 		return (1 + check_null(h));
 	}
-
-	return (0);
 }
