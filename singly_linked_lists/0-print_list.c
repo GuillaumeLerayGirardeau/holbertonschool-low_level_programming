@@ -11,8 +11,7 @@ unsigned int check_null(const list_t *h)
 {
 	if (h->next != NULL)
 	{
-		print_list(h->next);
-		return (1);
+		return (print_list(h->next));
 	}
 	return (0);
 }
