@@ -13,7 +13,10 @@ unsigned int check_null(const list_t *h)
 	{
 		return (print_list(h->next));
 	}
-	return (0);
+	else
+	{
+		return (0);
+	}
 }
 
 /**
