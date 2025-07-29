@@ -37,7 +37,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	dlistint_t *newnode, *address, *prev_address;
 	unsigned int position = 0, total = 0;
 
-	if (*h == NULL)
+	if (*h == NULL && idx != 0)
 		return (NULL);
 
 	address = *h;
