@@ -1,6 +1,29 @@
 #include "lists.h"
 
 /**
+ * total_node - return the number of nodes in the list
+ *
+ * @h: first node of the list
+ *
+ * Return: numbe rof node in the list
+ */
+unsigned int total_node(dlistint_t **h)
+{
+	dlistint_t *list;
+	unsigned int total = 0;
+
+	list = *h;
+
+	while (list != NULL)
+	{
+		list = list->next;
+		total++;
+	}
+
+	return (total);
+}
+
+/**
  * insert_dnodeint_at_index -  inserts a new node at a given position
  *
  * @h: first node of the list
@@ -12,25 +35,28 @@
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
 	dlistint_t *newnode, *address, *prev_address;
-	unsigned int position = 0;
+	unsigned int position = 0, total = 0;
 
 	if (*h == NULL)
 		return (NULL);
 
 	address = *h;
+	total = total_node(h);
+	if (idx > total)
+	{
+		return (NULL);
+	}
 
 	while (position < idx)
 	{
 		address = address->next;
-		if (address == NULL)
-		return (NULL);
 		position++;
 	}
 
 	if (idx == 0)
-	newnode = add_dnodeint(h, n);
-	else if (address->next == NULL && position == idx)
-	newnode = add_dnodeint_end(h, n);
+		newnode = add_dnodeint(h, n);
+	else if (address == NULL && position == total)
+		newnode = add_dnodeint_end(h, n);
 	else
 	{
 		newnode = malloc(sizeof(dlistint_t));
