@@ -20,8 +20,12 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	str = malloc(letters);
 
 	fd = open(filename, O_RDONLY);
+	if (fd == 0)
+		return (0);
 
 	size = read(fd, str, letters);
+	if (size == 0)
+		return (0);
 
 	if (letters > size)
 		letters = size;
