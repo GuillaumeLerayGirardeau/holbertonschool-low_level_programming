@@ -46,7 +46,7 @@ int append_text_to_file(const char *filename, char *text_content)
 	size = _strlen(text_content);
 
 	write_check = write(fd, text_content, size);
-	if (write_check == -1)
+	if (write_check == -1 || write_check < size)
 	{
 		close(fd);
 		return (-1);
