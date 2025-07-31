@@ -25,11 +25,15 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
+	{
+		free(str);
 		return (0);
+	}
 
 	check = read(fd, str, letters);
 	if (check == -1)
 	{
+		free(str);
 		close(fd);
 		return (0);
 	}
@@ -41,7 +45,11 @@ ssize_t read_textfile(const char *filename, size_t letters)
 
 	printed = write(1, str, letters);
 	if (printed != letters)
+	{
+		free(str);
+		clode(fd);
 		return (0);
+	}
 
 	free(str);
 	close(fd);
