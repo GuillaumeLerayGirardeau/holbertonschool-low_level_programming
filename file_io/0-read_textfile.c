@@ -12,6 +12,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd = 0;
 	size_t size = 0;
+	size_t printed;
 	char *str;
 
 	if (filename == NULL)
@@ -32,8 +33,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (letters > size)
 		letters = size;
 
-	write(1, str, letters);
-	if ((write(1, str, letters)) == -1)
+	printed = write(1, str, letters);
+	if (printed != letters)
 		return (0);
 
 	free(str);
