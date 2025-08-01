@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	if (file_copy == NULL)
 	{
 		close(fd);
-		return (-1);
+		exit(99);
 	}
 
 	true_number = read(fd, file_copy, 1024);
@@ -42,7 +42,6 @@ int main(int argc, char *argv[])
 	{
 		dprintf(2, "Can't read from file %s\n", argv[1]);
 		free(file_copy);
-		close(fd);
 		exit(98);
 	}
 
@@ -51,25 +50,22 @@ int main(int argc, char *argv[])
 	{
 		dprintf(2, "Can't close fd %i\n", fd);
 		free(file_copy);
-		close(fd);
 		exit(100);
 	}
 
 	fd = open(argv[2], O_RDWR | O_TRUNC | O_CREAT, 0664);
 	if (fd == -1)
 	{
-		dprintf(2, "Can't write to %s", argv[2]);
+		dprintf(2, "Can't write to %s\n", argv[2]);
 		free(file_copy);
-		close(fd);
 		exit(99);
 	}
 
 	check = write(fd, file_copy, true_number);
 	if (check == -1 || check == 0)
 	{
-		dprintf(2, "Can't write to %s", argv[2]);
+		dprintf(2, "Can't write to %s\n", argv[2]);
 		free(file_copy);
-		close(fd);
 		exit(99);
 	}
 
@@ -77,6 +73,7 @@ int main(int argc, char *argv[])
 	if (check == -1)
 	{
 		dprintf(2, "Can't close fd %i\n", fd);
+		free(file_copy);
 		exit(100);
 	}
 	free(file_copy);
