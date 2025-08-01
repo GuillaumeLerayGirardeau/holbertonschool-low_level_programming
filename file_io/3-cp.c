@@ -30,7 +30,7 @@ int file_copy(char *file_from, char *file_to)
 	if (fd_to == -1)
 	{
 		old_umask = umask(0);
-		fd_to = open(file_to, O_CREAT, 0664);
+		fd_to = open(file_to, O_WRONLY | O_CREAT, 0664);
 		umask(old_umask);
 
 		if (fd_to == -1)
