@@ -17,27 +17,27 @@ int file_copy(char *file_from, char *file_to)
 
 	fd_from = open(file_from, O_RDONLY);
 	if (fd_from == -1)
-		return (-1);
+		return (1);
 
 	true_number = read(fd_from, buffer, sizeof(buffer));
 	check = close(fd_from);
 
-	if (true_number == -1)
-		return (-1);
 	if (check == -1)
 		return (fd_from);
+	if (true_number == -1)
+		return (1);
 
 	old_umask = umask(0);
 	fd_to = open(file_to, O_WRONLY | O_TRUNC | O_CREAT, 0664);
 	umask(old_umask);
 	if (fd_to == -1)
-		return (-2);
+		return (2);
 
 	true_written = write(fd_to, buffer, true_number);
 	if (true_written == -1 || true_written != true_number)
 	{
 		close(fd_to);
-		return (-2);
+		return (2);
 	}
 
 	check = close(fd_to);
@@ -70,12 +70,12 @@ int main(int argc, char *argv[])
 
 	result = file_copy(argv[1], argv[2]);
 
-	if (result == -1)
+	if (result == 1)
 	{
 		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
-	else if (result == -2)
+	else if (result == 2)
 	{
 		dprintf(2, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
