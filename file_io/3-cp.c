@@ -1,6 +1,5 @@
 #include "main.h"
 
-int copy_file()
 /**
  * main - start of the program
  *
@@ -14,9 +13,9 @@ int copy_file()
 int main(int argc, char *argv[])
 {
 	int fd_from = 0, fd_to = 0;
+	char *file_copy[1024];
 	ssize_t check;
 	ssize_t true_number = 0;
-	char *file_copy[1024];
 	mode_t old_umask;
 
 	if (argc != 3)
