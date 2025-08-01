@@ -14,8 +14,9 @@ int main(int argc, char *argv[])
 {
 	int fd;
 	int check;
-	int true_number;
-	char *file_copy;
+	int true_number = 0;
+	char *file_copy[1024];
+	mode_t old_umask;
 
 	if (argc != 3)
 	{
@@ -30,18 +31,10 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
-	file_copy = malloc(1024);
-	if (file_copy == NULL)
-	{
-		close(fd);
-		exit(99);
-	}
-
 	true_number = read(fd, file_copy, 1024);
-	if (true_number == -1 || true_number == 0)
+	if (true_number == -1)
 	{
 		dprintf(2, "Can't read from file %s\n", argv[1]);
-		free(file_copy);
 		exit(98);
 	}
 
@@ -49,23 +42,22 @@ int main(int argc, char *argv[])
 	if (check == -1)
 	{
 		dprintf(2, "Can't close fd %i\n", fd);
-		free(file_copy);
 		exit(100);
 	}
 
-	fd = open(argv[2], O_RDWR | O_TRUNC | O_CREAT, 0664);
+	old_umask = umask(0);
+	fd = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
+	umask(old_umask);
 	if (fd == -1)
 	{
 		dprintf(2, "Can't write to %s\n", argv[2]);
-		free(file_copy);
 		exit(99);
 	}
 
 	check = write(fd, file_copy, true_number);
-	if (check == -1 || check == 0)
+	if (check == -1 || check != true_number)
 	{
 		dprintf(2, "Can't write to %s\n", argv[2]);
-		free(file_copy);
 		exit(99);
 	}
 
@@ -73,9 +65,7 @@ int main(int argc, char *argv[])
 	if (check == -1)
 	{
 		dprintf(2, "Can't close fd %i\n", fd);
-		free(file_copy);
 		exit(100);
 	}
-	free(file_copy);
 	return (0);
 }
