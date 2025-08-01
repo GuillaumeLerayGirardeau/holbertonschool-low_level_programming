@@ -10,9 +10,9 @@
  */
 int file_copy(char *file_from, char *file_to)
 {
-	int fd_from, fd_to;
+	int fd_from = 0, fd_to = 0, check = 0;
 	char buffer[1024];
-	ssize_t check, true_number;
+	ssize_t true_written = 0, true_number = 0;
 	mode_t old_umask;
 
 	fd_from = open(file_from, O_RDONLY);
@@ -33,8 +33,8 @@ int file_copy(char *file_from, char *file_to)
 	if (fd_to == -1)
 		return (-2);
 
-	check = write(fd_to, buffer, true_number);
-	if (check == -1 || check != true_number)
+	true_written = write(fd_to, buffer, true_number);
+	if (true_written == -1 || true_written != true_number)
 	{
 		close(fd_to);
 		return (-2);
