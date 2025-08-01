@@ -13,7 +13,7 @@
 int main(int argc, char *argv[])
 {
 	int fd_from = 0, fd_to = 0;
-	char *file_copy[1024];
+	char file_copy[1024];
 	ssize_t check;
 	ssize_t true_number = 0;
 	mode_t old_umask;
