@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 		dprintf(2, "Can't read from file %s", argv[2]);
 		free(file_copy);
 		close(fd);
-		exit(98);
+		exit(99);
 	}
 
 	check = write(fd, file_copy, 1024);
