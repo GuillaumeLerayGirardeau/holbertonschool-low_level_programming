@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 {
 	int fd;
 	int check;
+	int true_number;
 	char *file_copy;
 
 	if (argc != 3)
@@ -33,8 +34,8 @@ int main(int argc, char *argv[])
 	if (file_copy == NULL)
 		return (-1);
 
-	check = read(fd, file_copy, 1024);
-	if (check == -1 || check == 0)
+	true_number = read(fd, file_copy, 1024);
+	if (true_number == -1 || true_number == 0)
 	{
 		dprintf(2, "Can't read from file %s\n", argv[1]);
 		free(file_copy);
@@ -58,7 +59,7 @@ int main(int argc, char *argv[])
 		exit(99);
 	}
 
-	check = write(fd, file_copy, 1024);
+	check = write(fd, file_copy, true_number);
 	if (check == -1 || check == 0)
 	{
 		dprintf(2, "Can't write to %s", argv[2]);
