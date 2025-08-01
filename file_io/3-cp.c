@@ -12,8 +12,7 @@ int file_copy(char *file_from, char *file_to)
 {
 	int fd_from, fd_to;
 	char buffer[1024];
-	ssize_t check;
-	ssize_t true_number;
+	ssize_t check, true_number;
 	mode_t old_umask;
 
 	fd_from = open(file_from, O_RDONLY);
@@ -36,7 +35,10 @@ int file_copy(char *file_from, char *file_to)
 
 	check = write(fd_to, buffer, true_number);
 	if (check == -1 || check != true_number)
+	{
+		close(fd_to);
 		return (-2);
+	}
 
 	check = close(fd_to);
 	if (check == -1)
