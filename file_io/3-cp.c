@@ -11,7 +11,7 @@
 int file_copy(char *file_from, char *file_to)
 {
 	int fd_from = 0, fd_to = 0, check = 0;
-	char buffer[1024];
+	char *buffer[1024];
 	ssize_t true_written = 0, true_number = 0;
 	mode_t old_umask;
 
