@@ -32,7 +32,10 @@ int main(int argc, char *argv[])
 
 	file_copy = malloc(1024);
 	if (file_copy == NULL)
+	{
+		close(fd);
 		return (-1);
+	}
 
 	true_number = read(fd, file_copy, 1024);
 	if (true_number == -1 || true_number == 0)
@@ -47,13 +50,15 @@ int main(int argc, char *argv[])
 	if (check == -1)
 	{
 		dprintf(2, "Can't close fd %i\n", fd);
+		free(file_copy);
+		close(fd);
 		exit(100);
 	}
 
 	fd = open(argv[2], O_RDWR | O_TRUNC | O_CREAT, 0664);
 	if (fd == -1)
 	{
-		dprintf(2, "Can't read from file %s", argv[2]);
+		dprintf(2, "Can't write to %s", argv[2]);
 		free(file_copy);
 		close(fd);
 		exit(99);
@@ -76,5 +81,4 @@ int main(int argc, char *argv[])
 	}
 	free(file_copy);
 	return (0);
-
 }
