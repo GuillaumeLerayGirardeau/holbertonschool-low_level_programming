@@ -21,17 +21,22 @@ int file_copy(char *file_from, char *file_to)
 
 	true_number = read(fd_from, buffer, sizeof(buffer));
 	check = close(fd_from);
-
 	if (check == -1)
 		return (fd_from);
 	if (true_number == -1)
 		return (1);
 
-	old_umask = umask(0);
-	fd_to = open(file_to, O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	umask(old_umask);
+	fd_to = open(file_to, O_WRONLY | O_TRUNC);
 	if (fd_to == -1)
-		return (2);
+	{
+		old_umask = umask(0);
+		fd_to = open(file_to, O_CREAT, 0664);
+		umask(old_umask);
+
+		if (fd_to == -1)
+			return (2);
+
+	}
 
 	true_written = write(fd_to, buffer, true_number);
 	if (true_written == -1 || true_written != true_number)
@@ -45,7 +50,6 @@ int file_copy(char *file_from, char *file_to)
 		return (fd_to);
 
 	return (0);
-
 }
 
 /**
