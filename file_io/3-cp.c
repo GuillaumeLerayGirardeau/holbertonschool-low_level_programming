@@ -1,6 +1,52 @@
 #include "main.h"
 
 /**
+ * file_copy - copy a file
+ *
+ * @file_from: original file
+ * @file_to: copy of the file
+ *
+ * Return: 0 if success, or negative number if error
+ */
+int file_copy(char *file_from, char *file_to)
+{
+	int fd_from, fd_to;
+	char buffer[1024];
+	ssize_t check;
+	ssize_t true_number;
+	mode_t old_umask;
+
+	fd_from = open(file_from, O_RDONLY);
+	if (fd_from == -1)
+		return (-1);
+
+	true_number = read(fd_from, buffer, 1024);
+	check = close(fd_from);
+
+	if (true_number == -1)
+		return (-1);
+	if (check == -1)
+		return (fd_from);
+
+	old_umask = umask(0);
+	fd_to = open(file_to, O_WRONLY | O_TRUNC | O_CREAT, 0664);
+	umask(old_umask);
+	if (fd_to == -1)
+		return (-2);
+
+	check = write(fd_to, buffer, true_number);
+	if (check == -1 || check != true_number)
+		return (-2);
+
+	check = close(fd_to);
+	if (check == -1)
+		return (fd_to);
+
+	return (0);
+
+}
+
+/**
  * main - start of the program
  *
  * This program copies the content of a file to another file
@@ -12,11 +58,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int fd_from = 0, fd_to = 0;
-	char file_copy[1024];
-	ssize_t check;
-	ssize_t true_number = 0;
-	mode_t old_umask;
+	int result;
 
 	if (argc != 3)
 	{
@@ -24,48 +66,25 @@ int main(int argc, char *argv[])
 		exit(97);
 	}
 
-	fd_from = open(argv[1], O_RDONLY);
-	if (fd_from == -1)
+	result = file_copy(argv[1], argv[2]);
+
+	if (result == -1)
 	{
 		dprintf(2, "Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
-
-	true_number = read(fd_from, file_copy, 1024);
-	check = close(fd_from);
-
-	if (true_number == -1)
-	{
-		dprintf(2, "Can't read from file %s\n", argv[1]);
-		exit(98);
-	}
-	if (check == -1)
-	{
-		dprintf(2, "Can't close fd %i\n", fd_from);
-		exit(100);
-	}
-
-	old_umask = umask(0);
-	fd_to = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	umask(old_umask);
-	if (fd_to == -1)
+	else if (result == -2)
 	{
 		dprintf(2, "Can't write to %s\n", argv[2]);
 		exit(99);
 	}
-
-	check = write(fd_to, file_copy, true_number);
-	if (check == -1 || check != true_number)
+	else if (result == 0)
 	{
-		dprintf(2, "Can't write to %s\n", argv[2]);
-		exit(99);
+		return (0);
 	}
-
-	check = close(fd_to);
-	if (check == -1)
+	else
 	{
-		dprintf(2, "Can't close fd %i\n", fd_to);
+		dprintf(2, "Can't close fd %i\n", result);
 		exit(100);
 	}
-	return (0);
 }
