@@ -20,7 +20,7 @@ int file_copy(char *file_from, char *file_to)
 	if (fd_from == -1)
 		return (-1);
 
-	true_number = read(fd_from, buffer, 1024);
+	true_number = read(fd_from, buffer, sizeof(buffer));
 	check = close(fd_from);
 
 	if (true_number == -1)
@@ -70,12 +70,12 @@ int main(int argc, char *argv[])
 
 	if (result == -1)
 	{
-		dprintf(2, "Can't read from file %s\n", argv[1]);
+		dprintf(2, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
 	else if (result == -2)
 	{
-		dprintf(2, "Can't write to %s\n", argv[2]);
+		dprintf(2, "Error: Can't write to %s\n", argv[2]);
 		exit(99);
 	}
 	else if (result == 0)
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		dprintf(2, "Can't close fd %i\n", result);
+		dprintf(2, "Error: Can't close fd %i\n", result);
 		exit(100);
 	}
 }
