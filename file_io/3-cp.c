@@ -1,5 +1,6 @@
 #include "main.h"
 
+int copy_file()
 /**
  * main - start of the program
  *
@@ -12,7 +13,7 @@
  */
 int main(int argc, char *argv[])
 {
-	int fd_from, fd_to;
+	int fd_from = 0, fd_to = 0;
 	ssize_t check;
 	ssize_t true_number = 0;
 	char *file_copy[1024];
@@ -32,13 +33,13 @@ int main(int argc, char *argv[])
 	}
 
 	true_number = read(fd_from, file_copy, 1024);
+	check = close(fd_from);
+
 	if (true_number == -1)
 	{
 		dprintf(2, "Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
-
-	check = close(fd_from);
 	if (check == -1)
 	{
 		dprintf(2, "Can't close fd %i\n", fd_from);
